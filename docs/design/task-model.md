@@ -79,6 +79,8 @@ One full run, for scenario 2 (product manager, clinic idea), took 17 minutes, wi
 
 Three fixes on a small test app took about a minute or two each through the light path, against 15 to 17 minutes for a full run. An earlier version deleted a whole screen when asked to improve its error message, so the light path now stays inside the request and flags bigger problems in one line.
 
+After the light path was shortened to a few lines, the same three fixes took 19 to 29 seconds and stayed in scope. A prototype run with one test round, real file uploads, and a no-memory test took 7 minutes. Each is a single run on a small app.
+
 ## What we don't know
 
 - Whether real developers, product managers, and designers feel served by this. The next step is to watch one of each use it on real work.
