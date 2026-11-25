@@ -32,11 +32,10 @@ function allowedOrigins() {
   return [...LOCAL_ORIGINS, ...extra];
 }
 
-function createSandbox() {
+function createSandbox(origins) {
   const dir = mkdtempSync(join(tmpdir(), 'gdui-browser-'));
   mkdirSync(join(dir, 'samples'));
   for (const [name, data] of Object.entries(SAMPLES)) writeFileSync(join(dir, 'samples', name), data);
-  const origins = allowedOrigins();
   const hosts = [...new Set(origins.map(o => o.replace(/^https?:\/\//, '').replace(/:.*$/, '')))];
   writeFileSync(join(dir, 'config.json'), JSON.stringify({
     browser: {
@@ -59,6 +58,8 @@ function createSandbox() {
 
 const reply = (id, text) => process.stdout.write(`${JSON.stringify({ jsonrpc: '2.0', id, result: { isError: true, content: [{ type: 'text', text }] } })}\n`);
 
+const isObject = v => typeof v === 'object' && v !== null && !Array.isArray(v);
+
 // Returns the message to forward, or null if it was answered here.
 function filterRequest(msg, dir) {
   if (msg.method === 'initialize') {
@@ -66,11 +67,13 @@ function filterRequest(msg, dir) {
     return { ...msg, params: { ...msg.params, capabilities } };
   }
   if (msg.method !== 'tools/call') return msg;
-  const { name, arguments: { filename, ...args } = {} } = msg.params ?? {};
+  const { name, arguments: given } = msg.params ?? {};
+  if (typeof name !== 'string' || !isObject(given ?? {})) return reply(msg.id, 'Malformed tool call.'), null;
+  const { filename, ...args } = given ?? {};
   if (BLOCKED_TOOLS.has(name)) return reply(msg.id, `${name} is not available.`), null;
   if (args.paths === undefined) return { ...msg, params: { ...msg.params, arguments: args } };
   const paths = [].concat(args.paths);
-  if (!paths.every(p => Object.hasOwn(SAMPLES, p))) return reply(msg.id, `Only sample files can be used: ${Object.keys(SAMPLES).join(', ')}`), null;
+  if (!paths.every(p => typeof p === 'string' && Object.hasOwn(SAMPLES, p))) return reply(msg.id, `Only sample files can be used: ${Object.keys(SAMPLES).join(', ')}`), null;
   return { ...msg, params: { ...msg.params, arguments: { ...args, paths: paths.map(p => join(dir, 'samples', p)) } } };
 }
 
@@ -88,12 +91,12 @@ function pipeLines(input, output, transform) {
   createInterface({ input }).on('line', line => {
     let msg;
     try { msg = JSON.parse(line); } catch { return process.stderr.write('browser: dropped a malformed message\n'); }
-    const all = [].concat(msg).map(transform).filter(Boolean);
+    const all = [].concat(msg).filter(isObject).map(transform).filter(Boolean);
     for (const m of all) output.write(`${JSON.stringify(m)}\n`);
   });
 }
 
-const dir = createSandbox();
+const dir = createSandbox(allowedOrigins());
 process.on('exit', () => rmSync(dir, { recursive: true, force: true, maxRetries: 3 }));
 const env = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('PLAYWRIGHT_MCP_')));
 const server = spawn('npx', ['-y', SERVER, '--config', 'config.json'], { cwd: dir, env, stdio: ['pipe', 'pipe', 'inherit'], shell: process.platform === 'win32' });
@@ -103,4 +106,5 @@ server.stdin.on('error', () => {});
 pipeLines(process.stdin, server.stdin, m => filterRequest(m, dir));
 pipeLines(server.stdout, process.stdout, filterResponse);
 process.stdin.on('end', () => server.stdin.end());
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.kill(signal));
+// Closing stdin makes the server shut its browser down, on every platform.
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.stdin.end());

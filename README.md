@@ -32,10 +32,10 @@ codex plugin marketplace add <owner>/<repo>
 codex plugin add goal-directed-ui@goal-directed-ui
 ```
 
-This installs the skill. For simulated user tests, add a browser server:
+This installs the skill. For simulated user tests, clone this repository somewhere permanent and add its browser server:
 
 ```sh
-codex mcp add playwright -- node /path/to/this/repo/scripts/browser.mjs
+codex mcp add playwright -- node /path/to/your/clone/scripts/browser.mjs
 ```
 
 ### Antigravity
@@ -66,13 +66,13 @@ Point tests only at prototypes or at local or staging builds with test data. The
 
 The bundled server runs through `scripts/browser.mjs`, which enforces limits whatever the model asks for:
 
-- **Files:** it runs in a throwaway folder, ignores file names, and offers no code execution outside the page, so it can't write to your project.
-- **Sites:** only `localhost` and `127.0.0.1` are reachable. To test staging, set `GDUI_ALLOWED_ORIGINS`, for example `https://staging.example.com`, before starting. Separate several with `;`, and include any separate API or asset hosts. Don't list production.
+- **Files:** it runs in a throwaway folder, ignores file names, and offers no code execution outside the page (JavaScript inside the page is still possible in the main session), so it can't write to your project.
+- **Sites:** only `localhost` and `127.0.0.1` are reachable, on any port, so other services running locally are in reach too. To test staging, set `GDUI_ALLOWED_ORIGINS`, for example `https://staging.example.com`, before starting. Separate several with `;`, and include any separate API or asset hosts. Don't list production.
 - **Uploads:** only generated sample files can be uploaded, including empty, corrupt, and oversized ones.
 
 These limits cover this server only. If you have another browser server, it has its own rules, and the evaluator isn't given it. A local app that connects to live services can still act on them. `npx` downloads the pinned server and its dependencies at run time, and `interface-implementer` runs with the session's full tools.
 
-In tools other than Claude Code, add the same `node .../scripts/browser.mjs` command to that tool's MCP settings, or use the skill without simulated tests.
+In tools other than Claude Code, the server isn't set up automatically. Add the same `node .../scripts/browser.mjs` command, from a clone, to that tool's MCP settings, or use the skill without simulated tests.
 
 To check the limits: `node --test tests/browser.test.mjs`.
 

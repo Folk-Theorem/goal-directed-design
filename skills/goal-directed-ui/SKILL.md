@@ -10,9 +10,9 @@ Design for successful user behavior before visual polish. The task model, not th
 
 ## Light path
 
-The default for fixes and bounded changes unless a mode was named. Skip everything below.
+The default for fixes and bounded changes unless a mode was named. Skip everything below, and don't ask questions unless you can't proceed. Never claim a check you didn't run.
 
-Reproduce it (or read the code), make the smallest change that does exactly what was asked, check that and its likeliest failure, and reply in about five lines: cause, change, checked, not checked. Mention bigger problems in one line and leave them. If only asked why, find the cause and answer.
+Reproduce it (or read the code), make the smallest change that does exactly what was asked, check that and its likeliest failure (such as keyboard use or an error state), and reply in about five lines: cause, change, checked, not checked. Mention bigger problems in one line and leave them. If only asked why, find the cause and answer.
 
 Use the full flow only if the fix would reshape the flow, change permissions or an irreversible action, span several screens, or need a real product decision, or if the first fix failed. Say why in a line.
 
