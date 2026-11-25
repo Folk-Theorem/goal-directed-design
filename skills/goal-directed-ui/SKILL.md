@@ -10,7 +10,7 @@ Design for successful user behavior before visual polish. The task model, not th
 
 ## Light path
 
-Most fixes and bounded changes need only this, so use it by default for them and skip the rest of this skill:
+Unless a mode was named, use this by default for fixes and bounded changes, and skip the rest of this skill:
 
 1. Reproduce the problem, or read the code if it can't be run.
 2. Make the smallest change that does what was asked, following existing patterns. Stay inside the request: if asked to improve an error message, improve the message, even if the screen itself looks wrong.
@@ -156,7 +156,7 @@ The main session is the orchestrator and owns scope, integration, and final clai
 
 Research -> interaction alternatives -> independent critique -> selection -> implementation -> task-based verification.
 
-These are role names; how to run them depends on the host. `goal-researcher` and `interaction-architect` are read-only. `usability-evaluator` can't edit files but can drive a browser. `interface-implementer` edits code and raises interaction changes rather than silently redesigning.
+These are role names; how to run them depends on the host. `goal-researcher` and `interaction-architect` are read-only. `usability-evaluator` doesn't edit files but can drive a browser. `interface-implementer` edits code and raises interaction changes rather than silently redesigning.
 
 Do not start substantial implementation before a coherent model and scenarios exist. Selection follows the "Who decides" column above. When you decide, record the choice and proceed.
 

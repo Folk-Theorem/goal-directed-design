@@ -77,7 +77,7 @@ Routing was checked by giving fresh sessions each request and asking what they w
 
 One full run, for scenario 2 (product manager, clinic idea), took 17 minutes, with first browser activity at about 7 minutes. It produced a single file that opens with a double-click, a forwardable brief, and a handoff with the fake list, in plain language. No-memory tests caught a status that misled staff, which a scripted check had missed. Full runs for the developer and designer scenarios have not been done.
 
-Three real fixes on a small test app took about a minute or two each through the light path, against 15 to 17 minutes for a full run. An earlier version deleted a whole screen when asked to improve its error message, so the light path now stays inside the request and flags bigger problems in one line.
+Three fixes on a small test app took about a minute or two each through the light path, against 15 to 17 minutes for a full run. An earlier version deleted a whole screen when asked to improve its error message, so the light path now stays inside the request and flags bigger problems in one line.
 
 ## What we don't know
 

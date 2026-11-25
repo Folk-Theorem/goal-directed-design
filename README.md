@@ -64,6 +64,14 @@ npx -y -p @playwright/mcp@0.0.83 playwright install chromium
 
 Point tests only at prototypes or at local or staging builds with test data. The evaluator can click anything a user can, including real payment or send actions. In Claude Code, the server loads only in a trusted folder, so check that first if the evaluator reports no browser tools. The plugin also makes the browser tools available to the main session.
 
+Limits to know about:
+
+- The evaluator is given only the browser tools it needs: no code execution, file upload, or network inspection. Snapshot and screenshot tools can still overwrite files inside the project if given a file name, so its instructions forbid that. Run tests on committed work.
+- Nothing technical restricts which sites the browser can reach. `--isolated` keeps out your logged-in profile but doesn't limit sites.
+- `interface-implementer` runs with the session's full tools.
+- `npx` downloads the pinned browser server and its dependencies at run time.
+- Only Claude Code is known to load the bundled browser server. In other tools, add it in that tool's MCP settings, or use the skill without simulated tests.
+
 ## Use
 
 Describe what you need in your own words, and the skill works out the rest. Fixes and small changes take a light path: reproduce, fix, check, and report in a few lines. The full flow is only for work that needs it. You can also name a mode. The command name varies by tool; in a Claude Code plugin install, it is `/goal-directed-ui:goal-directed-ui`.
@@ -77,7 +85,7 @@ goal-directed-ui build [feature]
 
 Use `prototype` while a flow is uncertain. It makes a front end with no backend so you can test and change it quickly, and it keeps a list of everything it faked for the build to check against real services.
 
-The orchestrator delegates only for substantial work. The researcher, architect, and evaluator can't edit files: they return results in their responses, and the orchestrator saves anything worth keeping. The evaluator can also drive a browser. The implementer handles code edits and checks after a design is selected.
+The orchestrator delegates only for substantial work. The researcher and architect can't edit files, and the evaluator is told not to: they return results in their responses, and the orchestrator saves anything worth keeping. The evaluator can also drive a browser. The implementer handles code edits and checks after a design is selected.
 
 See `docs/design/task-model.md` for how this skill was designed, and what is still unknown about its users.
 

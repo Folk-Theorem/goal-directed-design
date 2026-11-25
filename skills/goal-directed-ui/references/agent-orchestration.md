@@ -1,11 +1,11 @@
 # Goal-directed UI: subagent contracts and handoffs
 
-These contracts guide the orchestrator whether persistent Claude Code agents are installed or the roles are run sequentially. Use agents for substantial work, not trivial fixes.
+These contracts guide the orchestrator whether persistent agents are installed or the roles are run sequentially. Use agents for substantial work, not trivial fixes.
 
 ## Running the roles
 
 Hosts differ, so detect what is available rather than assuming:
-- **Named agents available:** use them. A Claude Code plugin install registers all four.
+- **Named agents available:** use them.
 - **General subagents only:** start one and put the role's contract in its prompt. The agent files in this package's `agents/` folder hold the full text; read them if you can reach them, and otherwise use this file.
 - **No subagents:** perform the roles sequentially in the main session. Evaluation is then a self-review, so label it, and record no-memory tests as not run.
 
@@ -14,9 +14,9 @@ Tool restrictions in agent files only apply where the host honors them. Elsewher
 ## Agent setup
 
 1. Inspect existing project and user agents before creating anything, and reuse compatible ones.
-2. Claude Code does not discover agents inside a skill folder. If only the skill was copied, copy the agent files into `.claude/agents/` (project) or `~/.claude/agents/` (user).
+2. Hosts may not discover agents inside a skill folder. If only the skill was copied, the agent files go in the host's own agents folder.
 3. Do not create or overwrite persistent agent files unless the user asks for setup, and ask before writing outside the current project.
-4. Simulated tests need a browser tool. This package's `.mcp.json` configures Playwright for hosts that load it, and the README covers the others. Its `--isolated` flag keeps it out of the user's logged-in browser profile. If the evaluator reports no browser tools, check that the server loaded and, in Claude Code, that the folder is trusted.
+4. Simulated tests need a browser tool. This package's `.mcp.json` configures Playwright for hosts that load it, and the README covers the others. Its `--isolated` flag keeps it out of the user's logged-in browser profile. If the evaluator reports no browser tools, check that the server loaded and that the host trusts the folder.
 5. Without installed agents, delegate with these contracts in the task prompt where the host supports it, or perform the roles sequentially in the main session. Sequential evaluation is a self-review; label it so.
 
 ## Delegation map
@@ -41,7 +41,7 @@ For a consequential or uncertain design, consider asking the user to review the 
 5. Escalate conflict or meaningful changes in interaction behavior to the orchestrator.
 6. Do not present synthetic personas, agent simulations, heuristic guesses, or generated data as measured human outcomes.
 7. Keep the evaluator independent. Give it the scenarios, success conditions, and interface or models. Withhold the designer's rationale and preferred option until it has reported. Use a fresh agent for the post-build review rather than continuing the earlier one.
-8. For simulated user tests, the orchestrator starts the prototype or build, confirms it isn't production, and gives the evaluator the target, test users, tasks, and the run log format from [simulated-user-testing.md](simulated-user-testing.md).
+8. For simulated user tests, the orchestrator serves the prototype or build on localhost or a staging URL (not `file://`), confirms it isn't production, and gives the evaluator the target, test users, tasks, and the run log format from [simulated-user-testing.md](simulated-user-testing.md).
 9. The orchestrator runs no-memory tests, because subagents usually can't start other agents and each step needs a fresh one. Ask the evaluator to drive the task and return each decision-point screen, then give each screen to a new agent with only the goal. Pass the answers back to the evaluator or judge them yourself.
 10. If the evaluator has no browser tools, whoever can run the product supplies a run log instead. The evaluator may label a claim verified only when a log supports it.
 

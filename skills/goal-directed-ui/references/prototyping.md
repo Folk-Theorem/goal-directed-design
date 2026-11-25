@@ -4,7 +4,7 @@ A prototype is a working front end with no backend. It is for answering interact
 
 Speed is the point, so test early. **The first build is one task: its normal path and its likeliest failure. Test that before building anything else.** Keep the up-front task model to what that path needs, because the prototype is how you find out the rest. If models compete, sketch them in a few lines and build the one you are least sure about.
 
-Make it easy to open. A product manager or stakeholder should be able to double-click one file or follow one link, with no install or server.
+Make it easy to open. A product manager or stakeholder should be able to double-click one file or follow one link, with no install or server. For simulated tests, the orchestrator also serves that same file on localhost, because browser tools usually block `file://` pages.
 
 ## What a prototype can answer
 
