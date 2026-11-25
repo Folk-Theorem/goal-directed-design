@@ -10,22 +10,11 @@ Design for successful user behavior before visual polish. The task model, not th
 
 ## Light path
 
-Unless a mode was named, use this by default for fixes and bounded changes, and skip the rest of this skill:
+The default for fixes and bounded changes unless a mode was named. Skip everything below.
 
-1. Reproduce the problem, or read the code if it can't be run.
-2. Make the smallest change that does what was asked, following existing patterns. Stay inside the request: if asked to improve an error message, improve the message, even if the screen itself looks wrong.
-3. Check the fix and its most likely failure, such as keyboard use or an error state.
-4. Reply in about five lines: what was wrong, what changed, what was checked, what wasn't. If the real cause is bigger than the request, or you noticed other problems, say so in one line and leave them.
+Reproduce it (or read the code), make the smallest change that does exactly what was asked, check that and its likeliest failure, and reply in about five lines: cause, change, checked, not checked. Mention bigger problems in one line and leave them. If only asked why, find the cause and answer.
 
-No task model, alternatives, delegation, severity ratings, evidence labels, or reference files. Don't ask questions unless you can't proceed.
-
-Switch to the full flow only if one of these turns up, and say why in a line:
-- The cause is in the goal or the model, and fixing it properly would reshape the flow, not just one step.
-- The fix changes navigation, task order, permissions, or an irreversible action.
-- It spans several screens, or the right behavior is a real product or design decision.
-- The first fix didn't solve it.
-
-A request to explain one specific problem works the same way: find the cause and answer, without a full audit.
+Use the full flow only if the fix would reshape the flow, change permissions or an irreversible action, span several screens, or need a real product decision, or if the first fix failed. Say why in a line.
 
 ## Full flow: start from the situation and the person
 
@@ -156,7 +145,7 @@ The main session is the orchestrator and owns scope, integration, and final clai
 
 Research -> interaction alternatives -> independent critique -> selection -> implementation -> task-based verification.
 
-These are role names; how to run them depends on the host. `goal-researcher` and `interaction-architect` are read-only. `usability-evaluator` doesn't edit files but can drive a browser. `interface-implementer` edits code and raises interaction changes rather than silently redesigning.
+These are role names; how to run them depends on the host. `goal-researcher` and `interaction-architect` are read-only. `usability-evaluator` can't edit files but can drive a browser. `interface-implementer` edits code and raises interaction changes rather than silently redesigning.
 
 Do not start substantial implementation before a coherent model and scenarios exist. Selection follows the "Who decides" column above. When you decide, record the choice and proceed.
 

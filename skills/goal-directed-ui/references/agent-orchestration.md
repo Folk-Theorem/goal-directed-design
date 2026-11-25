@@ -16,7 +16,7 @@ Tool restrictions in agent files only apply where the host honors them. Elsewher
 1. Inspect existing project and user agents before creating anything, and reuse compatible ones.
 2. Hosts may not discover agents inside a skill folder. If only the skill was copied, the agent files go in the host's own agents folder.
 3. Do not create or overwrite persistent agent files unless the user asks for setup, and ask before writing outside the current project.
-4. Simulated tests need a browser tool. This package's `.mcp.json` configures Playwright for hosts that load it, and the README covers the others. Its `--isolated` flag keeps it out of the user's logged-in browser profile. If the evaluator reports no browser tools, check that the server loaded and that the host trusts the folder.
+4. Simulated tests need a browser tool. This package bundles one that can reach only local hosts unless the user allows others, and can't write to the project. Prefer it, because other browser tools have no such limits. Setup is in the README. If the evaluator reports no browser tools, check that the server loaded and that the host trusts the folder.
 5. Without installed agents, delegate with these contracts in the task prompt where the host supports it, or perform the roles sequentially in the main session. Sequential evaluation is a self-review; label it so.
 
 ## Delegation map

@@ -15,5 +15,13 @@
     "./agents/interaction-architect.md",
     "./agents/usability-evaluator.md",
     "./agents/interface-implementer.md"
-  ]
+  ],
+  "mcpServers": {
+    "playwright": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/scripts/browser.mjs"
+      ]
+    }
+  }
 }

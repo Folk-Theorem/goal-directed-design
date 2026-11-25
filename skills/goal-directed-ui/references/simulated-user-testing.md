@@ -91,7 +91,7 @@ Full memory is perfect and a person's isn't. A pass doesn't show the product is 
 
 ## Run the test
 
-File uploads and network throttling may not be available to the tester. Record those steps as not run.
+For upload steps, use the browser tool's bundled sample files, which include empty, corrupt, and oversized ones. If uploads or network throttling aren't available, record those steps as not run.
 
 1. During a run, use only what the test user can perceive. Reading source, the DOM, or the console belongs in a separate pass after the run, and its results are not part of the run.
 2. Before each action, the tester notes what it expects to happen. After acting, it notes what did happen. A mismatch is a finding even if the task succeeds.
