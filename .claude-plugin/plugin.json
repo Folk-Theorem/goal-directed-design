@@ -1,0 +1,19 @@
+{
+  "name": "goal-directed-ui",
+  "version": "0.1.0",
+  "description": "Design, prototype, build, and audit interfaces from user goals, with simulated user testing.",
+  "author": {
+    "name": "Ankit Shekhawat"
+  },
+  "keywords": [
+    "ux",
+    "interaction-design",
+    "usability"
+  ],
+  "agents": [
+    "./agents/goal-researcher.md",
+    "./agents/interaction-architect.md",
+    "./agents/usability-evaluator.md",
+    "./agents/interface-implementer.md"
+  ]
+}
