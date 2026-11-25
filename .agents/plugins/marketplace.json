@@ -1,0 +1,17 @@
+{
+  "name": "goal-directed-ui",
+  "interface": {
+    "displayName": "Goal-directed UI"
+  },
+  "plugins": [
+    {
+      "name": "goal-directed-ui",
+      "source": "./",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

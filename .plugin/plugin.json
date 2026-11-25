@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "goal-directed-ui",
+  "version": "0.1.0",
+  "description": "Design, prototype, build, and audit interfaces from user goals, with simulated user testing.",
+  "author": {
+    "name": "Ankit Shekhawat"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "goal-directed-ui",
+  "owner": {
+    "name": "Ankit Shekhawat"
+  },
+  "plugins": [
+    {
+      "name": "goal-directed-ui",
+      "source": "./",
+      "description": "Design, prototype, build, and audit interfaces from user goals, with simulated user testing."
+    }
+  ]
+}
