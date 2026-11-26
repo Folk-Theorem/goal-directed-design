@@ -14,12 +14,12 @@ Installs in Claude Code, Codex, and Antigravity, and can be copied into anything
 
 ## Install
 
-Replace `<owner>/<repo>` with where this repository is hosted, or use a local path to the repository.
+To install from a local clone instead, use its path in place of `Folk-Theorem/goal-directed-design`.
 
 ### Claude Code
 
 ```sh
-claude plugin marketplace add <owner>/<repo>
+claude plugin marketplace add Folk-Theorem/goal-directed-design
 claude plugin install goal-directed-ui@goal-directed-ui
 ```
 
@@ -28,7 +28,7 @@ This installs the skill, all four agents, and the browser server.
 ### Codex
 
 ```sh
-codex plugin marketplace add <owner>/<repo>
+codex plugin marketplace add Folk-Theorem/goal-directed-design
 codex plugin add goal-directed-ui@goal-directed-ui
 ```
 
@@ -41,13 +41,13 @@ codex mcp add playwright -- node /path/to/your/clone/scripts/browser.mjs
 ### Antigravity
 
 ```sh
-agy plugin install https://github.com/<owner>/<repo>
+agy plugin install https://github.com/Folk-Theorem/goal-directed-design
 ```
 
 ### Any other tool
 
 ```sh
-npx skills add <owner>/<repo> --all
+npx skills add Folk-Theorem/goal-directed-design --all
 ```
 
 Or copy `skills/goal-directed-ui/` into the tool's skills folder. Both routes install the skill without the agents, and it runs by following the role contracts in its references.
@@ -103,3 +103,7 @@ In `skills/goal-directed-ui/references/`:
 - `simulated-user-testing.md`: persona tests, no-memory and full-memory modes, and enforced conditions. Simulated tests rehearse for real user testing and don't replace it.
 - `dark-patterns.md`: deceptive and manipulative patterns to catch in audits, with severity.
 - `agent-orchestration.md`: running the roles on different hosts, role contracts, and handoff schemas.
+
+## License
+
+MIT. See `LICENSE`. The dark-pattern catalog is adapted from Design with Intent, which is CC0.

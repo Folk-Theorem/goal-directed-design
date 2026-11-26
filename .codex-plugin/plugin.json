@@ -5,6 +5,9 @@
   "author": {
     "name": "Ankit Shekhawat"
   },
+  "homepage": "https://github.com/Folk-Theorem/goal-directed-design",
+  "repository": "https://github.com/Folk-Theorem/goal-directed-design",
+  "license": "MIT",
   "skills": "./skills/",
   "interface": {
     "displayName": "Goal-directed UI",

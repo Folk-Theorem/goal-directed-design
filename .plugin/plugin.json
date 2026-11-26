@@ -5,5 +5,8 @@
   "description": "Design, prototype, build, and audit interfaces from user goals, with simulated user testing.",
   "author": {
     "name": "Ankit Shekhawat"
-  }
+  },
+  "homepage": "https://github.com/Folk-Theorem/goal-directed-design",
+  "repository": "https://github.com/Folk-Theorem/goal-directed-design",
+  "license": "MIT"
 }
